@@ -43,7 +43,7 @@ when some of the checks fails (returns `false`).
 * empty - check if the inputs value is empty
 * email - check if the inputs value is some kind of email
 
-# Defining your own validating function (the best way)
+# Defining your own validating function
 In the case you want to do something specific when the validation fails you are able to define your own `aslak.js` validation function.
 The process is actually pretty simple. Only thing you have to do is to define a new function property for the `aslak` object.
 
@@ -60,3 +60,10 @@ To use your self defined function you have to modify your input `aslak-validate`
       		
     <input type="text" aslak-validate="validateEmail" placeholder="Email">
 
+# Other attributes
+
+## aslak-ignore
+In the case you use some kind of dynamic form changed by Angular etc. you may want to ignore some validations. To ignore the impact of the `aslak-validate` you have to use the `aslak-ignore` attribute with the value `true`.
+
+    <input type="text" aslak-validate="empty" aslak-ignore="true" placeholder="Name">
+    <input type="text" aslak-validate="empty" aslak-ignore="{{ binding.maybe.show }}" placeholder="Binding">
