@@ -6,7 +6,7 @@ var aslak = (function () {
 
 	Aslak.prototype.setupElements = function () {
 		var eles = this.elements;
-		eles.inputs = document.querySelectorAll('[aslak-validate]') || [];
+		eles.inputs = document.querySelectorAll('[aslak-validate]:not([aslak-ignore="true"])') || [];
 	}
 
 	Aslak.prototype.validate = function () {
