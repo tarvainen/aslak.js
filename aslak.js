@@ -22,7 +22,7 @@ var aslak = (function () {
 				break;
 			}
 
-			var validators = validator.split(',');
+			var validators = validator.replace(/\s/g, '').split(',');
 			if (!this.runValidators(validators, input)) {
 				if (success) {
 					input.focus();
@@ -54,7 +54,7 @@ var aslak = (function () {
 	}
 
 	Aslak.prototype.isFunctionWithCall = function (validator) {
-		return validator.match(/[,|\s]([\w]*)\((.?(?=\)))\)/);
+		return validator.match(/^([\w]*)\((.*?(?=\)))\)/);
 	}
 
 	Aslak.prototype.email = function (input) {
@@ -75,6 +75,19 @@ var aslak = (function () {
 
 	Aslak.prototype.integer = function (input) {
 		return /^\d+$/.test(input.value);
+	}
+
+	Aslak.prototype.minLength = function (input, min) {
+		return input.value.length >= min;
+	}
+
+	Aslak.prototype.maxLength = function (input, max) {
+		return input.value.length <= max;
+	}
+
+	Aslak.prototype.match = function (input, regex) {
+		var regex = new RegExp(regex, 'i');
+		return regex.test(input.value);
 	}
 
 	return new Aslak();
