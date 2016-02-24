@@ -66,13 +66,15 @@ var aslak = (function () {
 	}
 
 	Aslak.prototype.min = function (input, min) {
-		console.log(input.value);
-		console.log(min);
 		return input.value >= min;
 	}
 
 	Aslak.prototype.max = function (input, max) {
 		return input.value <= max;
+	}
+
+	Aslak.prototype.integer = function (input) {
+		return /^\d+$/.test(input.value);
 	}
 
 	return new Aslak();
