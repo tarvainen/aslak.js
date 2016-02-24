@@ -40,10 +40,14 @@ when some of the checks fails (returns `false`).
 
 # Predefined validating functions
 `aslak.js` ships with few handy predefined validating functions
-* empty - check if the inputs value is empty
-* email - check if the inputs value is some kind of email
+* empty - check that the inputs value is not empty
+* email - check that the inputs value is some kind of email
 * min(value) - check that the input value is greater than the given min value
 * max(value) - check that the input value is smaller than the given max value
+* integer - check that the input value is an integer
+* minLength(value) - check that the input value is longer than the given min value
+* maxLength(value) - check that the input value is shorter than the given max value
+* match(regex) - check that the input value matches the pattern given
 
 # Defining your own validating function
 In the case you want to do something specific when the validation fails you are able to define your own `aslak.js` validation function.
@@ -69,3 +73,6 @@ In the case you use some kind of dynamic form changed by Angular etc. you may wa
 
     <input type="text" aslak-validate="empty" aslak-ignore="true" placeholder="Name">
     <input type="text" aslak-validate="empty" aslak-ignore="{{ binding.maybe.show }}" placeholder="Binding">
+
+# License
+WTFPL
