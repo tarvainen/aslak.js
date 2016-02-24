@@ -42,6 +42,8 @@ when some of the checks fails (returns `false`).
 `aslak.js` ships with few handy predefined validating functions
 * empty - check if the inputs value is empty
 * email - check if the inputs value is some kind of email
+* min(value) - check that the input value is greater than the given min value
+* max(value) - check that the input value is smaller than the given max value
 
 # Defining your own validating function
 In the case you want to do something specific when the validation fails you are able to define your own `aslak.js` validation function.
