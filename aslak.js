@@ -22,7 +22,7 @@ var aslak = (function () {
 				break;
 			}
 
-			var validators = validator.match(/[\w]+/g);
+			var validators = validator.split(',');
 			if (!this.runValidators(validators, input)) {
 				if (success) {
 					input.focus();
@@ -40,9 +40,21 @@ var aslak = (function () {
 				if (!this[validators[j]](input)) {
 					return false;
 				}
+			} else if (this.isFunctionWithCall(validators[j])) {
+				var vals = this.isFunctionWithCall(validators[j]);
+				if (typeof this[vals[1]] === 'function') {
+					if (!this[vals[1]](input, vals[2])) {
+						return false;
+					}
+				}
 			}
 		}
+
 		return true;
+	}
+
+	Aslak.prototype.isFunctionWithCall = function (validator) {
+		return validator.match(/[,|\s]([\w]*)\((.?(?=\)))\)/);
 	}
 
 	Aslak.prototype.email = function (input) {
@@ -51,6 +63,16 @@ var aslak = (function () {
 
 	Aslak.prototype.empty = function (input) {
 		return !input || !input.value || input.value.length <= 0;
+	}
+
+	Aslak.prototype.min = function (input, min) {
+		console.log(input.value);
+		console.log(min);
+		return input.value >= min;
+	}
+
+	Aslak.prototype.max = function (input, max) {
+		return input.value <= max;
 	}
 
 	return new Aslak();
