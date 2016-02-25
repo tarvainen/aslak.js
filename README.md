@@ -17,6 +17,7 @@ You have also to add `aslak-validate` attributes for your inputs you want to val
       	<form id="aslakform">
       		<input type="text" aslak-validate="empty" placeholder="Name">
       		<input type="text" aslak-validate="email" placeholder="Email">
+      		<input type="checkbox" aslak-validate="checked">
       		<button type="submit">Submit</button>
       	</form>
       
@@ -48,6 +49,7 @@ when some of the checks fails (returns `false`).
 * minLength(value) - check that the input value is longer than the given min value
 * maxLength(value) - check that the input value is shorter than the given max value
 * match(regex) - check that the input value matches the pattern given
+* checked - checks that the checkbox is checked
 
 # Defining your own validating function
 In the case you want to do something specific when the validation fails you are able to define your own `aslak.js` validation function.
