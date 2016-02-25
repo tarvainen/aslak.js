@@ -90,6 +90,10 @@ var aslak = (function () {
 		return regex.test(input.value);
 	}
 
+	Aslak.prototype.checked = function (input) {
+		return input.checked;
+	}
+
 	return new Aslak();
 
 }).call(this);
