@@ -1,5 +1,5 @@
 # aslak.js
-A simple JavaScript form validation library.
+A simple and cool JavaScript form validation library.
 
 # Installation
 Just link the `aslak.js` in to your HTML file.
