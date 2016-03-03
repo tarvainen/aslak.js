@@ -4,13 +4,25 @@ var aslak = (function () {
 		this.elements = {};
 	}
 
-	Aslak.prototype.setupElements = function () {
+	Aslak.prototype.setupElements = function (formid) {
 		var eles = this.elements;
-		eles.inputs = document.querySelectorAll('[aslak-validate]:not([aslak-ignore="true"])') || [];
+		if (formid) {
+
+			var container = document.querySelector('[aslak-form=' + formid + ']');
+			if (!container) {
+				eles.inputs = [];
+				return false;
+			}
+
+			eles.inputs = container.querySelectorAll('[aslak-validate]:not([aslak-ignore="true"])') || [];
+
+		} else {
+			eles.inputs = document.querySelectorAll('[aslak-validate]:not([aslak-ignore="true"])') || [];
+		}
 	}
 
-	Aslak.prototype.validate = function () {
-		this.setupElements();
+	Aslak.prototype.validate = function (formid) {
+		this.setupElements(formid);
 		var success = true;
 
 		for (var i = 0; i < this.elements.inputs.length; i++) {
@@ -88,10 +100,6 @@ var aslak = (function () {
 	Aslak.prototype.match = function (input, regex) {
 		var regex = new RegExp(regex, 'i');
 		return regex.test(input.value);
-	}
-
-	Aslak.prototype.checked = function (input) {
-		return input.checked;
 	}
 
 	return new Aslak();
